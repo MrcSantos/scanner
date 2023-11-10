@@ -60,6 +60,7 @@ async function checkRequirements() {
 async function scheduleSelfAndExit() {
   const atTime = await question('Enter the time in AT format (e.g., 2:30 PM today): ');
   console.log(`Scheduled the script to run at ${atTime}.`);
+  // TODO: Estrarre il nome stesso dello script, non tenerlo hardcodato
   await $`echo "zx test.mjs" | at ${atTime} 2>/dev/null`
   process.exit(0);
 }
@@ -86,7 +87,12 @@ async function makeScans() {
   const niktoXmlFile = `${outputFolder}/nikto.xml`;
 
   const targets = await cat(targetsFile).toString().split('\n').filter(Boolean);
+  
   /*
+  Utilizzare jfscan
+
+  OPPURE
+  
   La prima cosa da fare e' ottenere tutti i targets
   Dei target i possibili input sono:
   - CIDR
