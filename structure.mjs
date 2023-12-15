@@ -34,7 +34,7 @@ async function checkNikto() {
   
   const { stdout } = await $`nikto -Version`
   if (!stdout.includes(expectedVersion)) {
-    throw new Error("Nikto installe with wrong version")
+    throw new Error("Nikto installed with wrong version")
   }
 }
 
